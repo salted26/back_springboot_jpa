@@ -36,7 +36,7 @@ public class BoardController {
   }
 
   @GetMapping("/update/{no}")
-  public ResponseEntity<BoardDTO> updatePage(@PathVariable("no") Long no, @RequestBody BoardDTO boardDTO) {
+  public ResponseEntity<BoardDTO> updatePage(@PathVariable("no") Long no) {
     BoardDTO board = boardService.getBoardByNo(no);
     return ResponseEntity.ok(board);
   }

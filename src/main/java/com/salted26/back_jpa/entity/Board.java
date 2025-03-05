@@ -39,15 +39,4 @@ public class Board {
     @Column(name="updated_at")
     private LocalDateTime updated_at;
 
-    public void update(Board board) {
-        this.no = board.getNo();
-        this.id = board.getId();
-        this.title = board.getTitle();
-        this.writer = board.getWriter();
-        this.content = board.getContent();
-        this.views = board.getViews();
-        this.created_at = board.getCreated_at();
-        this.updated_at = board.getUpdated_at();
-    }
-
 }

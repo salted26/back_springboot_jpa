@@ -1,6 +1,5 @@
 package com.salted26.back_jpa.dto;
 
-import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.LocalDateTime;

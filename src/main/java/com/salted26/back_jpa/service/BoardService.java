@@ -10,7 +10,7 @@ public interface BoardService {
 
   List<BoardDTO> getAllBoards();
 
-  BoardDTO saveBoard(BoardDTO boardDTO);
+  void saveBoard(BoardDTO boardDTO);
 
   void updateBoard(Long no, BoardDTO boardDTO);
 }

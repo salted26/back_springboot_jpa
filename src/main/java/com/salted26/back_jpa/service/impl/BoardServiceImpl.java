@@ -39,8 +39,8 @@ public class BoardServiceImpl implements BoardService {
   }
 
   @Override
-  public BoardDTO saveBoard(BoardDTO boardDTO) {
-    return BoardMapper.mapToBoardDTO(boardRepository.save(BoardMapper.mapToBoard(boardDTO)));
+  public void saveBoard(BoardDTO boardDTO) {
+    BoardMapper.mapToBoardDTO(boardRepository.save(BoardMapper.mapToBoard(boardDTO)));
   }
 
   @Override
