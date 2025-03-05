@@ -4,15 +4,18 @@ import com.salted26.back_jpa.dto.BoardDTO;
 import com.salted26.back_jpa.entity.Board;
 import com.salted26.back_jpa.mapper.BoardMapper;
 import com.salted26.back_jpa.repository.BoardRepository;
+import com.salted26.back_jpa.repository.PageRepository;
 import com.salted26.back_jpa.service.BoardService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -22,6 +25,21 @@ public class BoardServiceImpl implements BoardService {
   @Autowired
   private BoardRepository boardRepository;
 
+  @Autowired
+  private PageRepository pageRepository;
+
+  @Override
+  public List<Board> getAllBoards() {
+    List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "no"));
+    return boardList;
+  }
+
+  @Override
+  public Page<Board> getAllBoardsWithPagination(int offset, int pageSize, String field) {
+    Page<Board> boards = boardRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+    return boards;
+  }
+
   @Override
   public BoardDTO getBoardByNo(Long no) {
     Board board = boardRepository.findById(no)
@@ -29,13 +47,6 @@ public class BoardServiceImpl implements BoardService {
         -> new EntityNotFoundException("Board with id " + no + " not found"));
     return BoardMapper.mapToBoardDTO(board);
 
-  }
-
-  @Override
-  public List<BoardDTO> getAllBoards() {
-    List<Board> boardList = boardRepository.findAll();
-    return boardList.stream().map((board) -> BoardMapper.mapToBoardDTO(board))
-      .collect(Collectors.toList());
   }
 
   @Override
@@ -62,6 +73,11 @@ public class BoardServiceImpl implements BoardService {
   @Override
   public void deleteBoard(Long no) {
     boardRepository.deleteById(no);
+  }
+
+  @Override
+  public Page<Board> getAllPagination(int page, int pageSize) {
+    return pageRepository.findAll(PageRequest.of(page, pageSize));
   }
 
 }
