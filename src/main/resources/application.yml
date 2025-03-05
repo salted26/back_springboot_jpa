@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: back_jpa
+
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
+        format_sql: true
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://salted.database.windows.net:1433;database=salted
+    username: salted
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://localhost:3306/salted26
+    #    username: salted26
+    password: gksmfdlA!01
