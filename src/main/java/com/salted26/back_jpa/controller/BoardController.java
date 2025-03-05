@@ -4,15 +4,14 @@ import com.salted26.back_jpa.dto.BoardDTO;
 import com.salted26.back_jpa.service.BoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/board")
 @AllArgsConstructor
+@RequestMapping("/api/board")
 public class BoardController {
 
   private BoardService boardService;
@@ -43,8 +42,8 @@ public class BoardController {
   }
 
   @PutMapping("/update/{no}")
-  @Transactional
   public ResponseEntity<?> update(@PathVariable("no") Long no, @RequestBody BoardDTO boardDTO) {
+    System.out.println("update" + boardDTO);
     boardService.updateBoard(no, boardDTO);
     return ResponseEntity.ok().build();
   }
