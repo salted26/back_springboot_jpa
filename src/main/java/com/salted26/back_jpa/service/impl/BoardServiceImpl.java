@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -32,6 +33,21 @@ public class BoardServiceImpl implements BoardService {
   public List<Board> getAllBoards() {
     List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "no"));
     return boardList;
+  }
+
+  @Override
+  public Page<Board> getAllPagination(int page, int pageSize, String searchKeyword) {
+    PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "no"));
+
+    if(searchKeyword.isEmpty() || searchKeyword.equals("")) {
+      System.out.println("null : " + searchKeyword);
+      Page<Board> boardList = boardRepository.findAll(pageRequest);
+      return boardList;
+    } else {
+      System.out.println("keyword : " + searchKeyword);
+      Page<Board> boardList = pageRepository.findByTitleContaining(searchKeyword, pageRequest);
+      return boardList;
+    }
   }
 
   @Override
@@ -75,9 +91,5 @@ public class BoardServiceImpl implements BoardService {
     boardRepository.deleteById(no);
   }
 
-  @Override
-  public Page<Board> getAllPagination(int page, int pageSize) {
-    return pageRepository.findAll(PageRequest.of(page, pageSize));
-  }
 
 }

@@ -35,11 +35,12 @@ public class Board {
     private int views;
 
     @CreatedDate
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @Column(name="created_at")
     private LocalDateTime created_at;
 
     @LastModifiedDate
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @Column(name="updated_at")
     private LocalDateTime updated_at;
-
 }

@@ -23,5 +23,4 @@ public class BoardDTO {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime updated_at;
 
-
 }

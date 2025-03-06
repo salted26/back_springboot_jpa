@@ -6,8 +6,10 @@ import com.salted26.back_jpa.service.BoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/board")
+@EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 public class BoardController {
 
   @Autowired
@@ -23,8 +26,10 @@ public class BoardController {
 
   @GetMapping("")
   public ResponseEntity<Page<Board>> getAllBoards(
-    @RequestParam int page, @RequestParam int pageSize) {
-    Page<Board> boardList = boardService.getAllPagination(page, pageSize);
+    @RequestParam(required = false) int page,
+    @RequestParam(required = false) int pageSize,
+    @RequestParam(required = false) String searchKeyword) {
+    Page<Board> boardList = boardService.getAllPagination(page, pageSize, searchKeyword);
     return new ResponseEntity<>(boardList, HttpStatus.OK);
   }
 
