@@ -43,9 +43,9 @@ public class BoardController {
   }
 
   // build Get Board REST API
-  @GetMapping("/{no}")
-  public ResponseEntity<BoardDTO> getBoardByNo(@PathVariable("no") Long no) {
-    BoardDTO board = boardService.getBoardByNo(no);
+  @GetMapping("/{id}")
+  public ResponseEntity<BoardDTO> getBoardById(@PathVariable("id") Long id) {
+    BoardDTO board = boardService.getBoardById(id);
     return ResponseEntity.ok(board);
   }
 
@@ -55,21 +55,21 @@ public class BoardController {
     return ResponseEntity.ok().build();
   }
 
-  @GetMapping("/update/{no}")
-  public ResponseEntity<BoardDTO> updatePage(@PathVariable("no") Long no) {
-    BoardDTO board = boardService.getBoardByNo(no);
+  @GetMapping("/update/{id}")
+  public ResponseEntity<BoardDTO> updatePage(@PathVariable("id") Long id) {
+    BoardDTO board = boardService.getBoardById(id);
     return ResponseEntity.ok(board);
   }
 
-  @PutMapping("/update/{no}")
-  public ResponseEntity<?> update(@PathVariable("no") Long no, @RequestBody BoardDTO boardDTO) {
-    boardService.updateBoard(no, boardDTO);
+  @PutMapping("/update/{id}")
+  public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody BoardDTO boardDTO) {
+    boardService.updateBoard(id, boardDTO);
     return ResponseEntity.ok().build();
   }
 
-  @DeleteMapping("/delete/{no}")
-  public ResponseEntity<?> delete(@PathVariable("no") Long no) {
-    boardService.deleteBoard(no);
+  @DeleteMapping("/delete/{id}")
+  public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+    boardService.deleteBoard(id);
     return ResponseEntity.ok().build();
   }
 }

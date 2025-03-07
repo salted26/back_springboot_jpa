@@ -31,13 +31,13 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public List<Board> getAllBoards() {
-    List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "no"));
+    List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     return boardList;
   }
 
   @Override
   public Page<Board> getAllPagination(int page, int pageSize, String searchKeyword) {
-    PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "no"));
+    PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "id"));
 
     if(searchKeyword.isEmpty() || searchKeyword.equals("")) {
       System.out.println("null : " + searchKeyword);
@@ -57,10 +57,10 @@ public class BoardServiceImpl implements BoardService {
   }
 
   @Override
-  public BoardDTO getBoardByNo(Long no) {
-    Board board = boardRepository.findById(no)
+  public BoardDTO getBoardById(Long id) {
+    Board board = boardRepository.findById(id)
       .orElseThrow(()
-        -> new EntityNotFoundException("Board with id " + no + " not found"));
+        -> new EntityNotFoundException("Board with id " + id + " not found"));
     return BoardMapper.mapToBoardDTO(board);
 
   }
@@ -71,13 +71,12 @@ public class BoardServiceImpl implements BoardService {
   }
 
   @Override
-  public void updateBoard(Long no, BoardDTO boardDTO) {
-    Board board = boardRepository.findById(no)
-      .orElseThrow(() -> new EntityNotFoundException("Board with id " + no + " not found"));
+  public void updateBoard(Long id, BoardDTO boardDTO) {
+    Board board = boardRepository.findById(id)
+      .orElseThrow(() -> new EntityNotFoundException("Board with id " + id + " not found"));
 
     if(board != null) {
-      board.setId(boardDTO.getId());
-      board.setId(boardDTO.getId());
+      board.setEmail(boardDTO.getEmail());
       board.setTitle(boardDTO.getTitle());
       board.setContent(boardDTO.getContent());
       board.setWriter(boardDTO.getWriter());
@@ -87,8 +86,8 @@ public class BoardServiceImpl implements BoardService {
   }
 
   @Override
-  public void deleteBoard(Long no) {
-    boardRepository.deleteById(no);
+  public void deleteBoard(Long id) {
+    boardRepository.deleteById(id);
   }
 
 

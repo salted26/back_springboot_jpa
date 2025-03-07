@@ -3,6 +3,7 @@ package com.salted26.back_jpa.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -22,9 +23,9 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no;
-    @Column(name="id", nullable=false, unique=true)
-    private String id;
+    private Long id;
+    @Column(name="email", nullable=false, unique=true)
+    private String email;
     @Column(name="title")
     private String title;
     @Column(name="writer")

@@ -22,7 +22,7 @@ public class Users {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long no;
 
-  private String id;
+  private String email;
   private String password;
   private String nickname;
   private UserRoleType role;

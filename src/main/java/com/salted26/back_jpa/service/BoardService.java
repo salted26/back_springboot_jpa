@@ -13,16 +13,15 @@ public interface BoardService {
 
   Page<Board> getAllPagination(int page, int pageSize, String searchKeyword);
 
-
   Page<Board> getAllBoardsWithPagination(int offset, int pageSize, String field);
 
-  BoardDTO getBoardByNo(Long no);
+  BoardDTO getBoardById(Long id);
 
   void saveBoard(BoardDTO boardDTO);
 
-  void updateBoard(Long no, BoardDTO boardDTO);
+  void updateBoard(Long id, BoardDTO boardDTO);
 
-  void deleteBoard(Long no);
+  void deleteBoard(Long id);
 
 
 }

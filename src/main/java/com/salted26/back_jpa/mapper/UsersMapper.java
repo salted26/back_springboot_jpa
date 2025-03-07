@@ -8,7 +8,7 @@ public class UsersMapper {
   public static UsersDTO mapToUsersDTO(Users users) {
     return new UsersDTO(
       users.getNo(),
-      users.getId(),
+      users.getEmail(),
       users.getPassword(),
       users.getNickname(),
       users.getRole(),
@@ -19,7 +19,7 @@ public class UsersMapper {
   public static Users mapToUsers(UsersDTO usersDTO) {
     return new Users(
       usersDTO.getNo(),
-      usersDTO.getId(),
+      usersDTO.getEmail(),
       usersDTO.getPassword(),
       usersDTO.getNickname(),
       usersDTO.getRole(),
