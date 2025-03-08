@@ -22,9 +22,9 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no;
-    @Column(name="id", nullable=false, unique=true)
-    private String id;
+    private Long id;
+    @Column(name="email", nullable=false, unique=true)
+    private String email;
     @Column(name="title")
     private String title;
     @Column(name="writer")

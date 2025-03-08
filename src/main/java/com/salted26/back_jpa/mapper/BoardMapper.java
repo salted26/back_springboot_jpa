@@ -7,8 +7,8 @@ public class BoardMapper {
 
     public static BoardDTO mapToBoardDTO(Board board) {
         return new BoardDTO(
-            board.getNo(),
             board.getId(),
+            board.getEmail(),
             board.getTitle(),
             board.getWriter(),
             board.getContent(),
@@ -20,8 +20,8 @@ public class BoardMapper {
 
     public static Board mapToBoard(BoardDTO boardDTO) {
         return new Board(
-            boardDTO.getNo(),
             boardDTO.getId(),
+            boardDTO.getEmail(),
             boardDTO.getTitle(),
             boardDTO.getWriter(),
             boardDTO.getContent(),

@@ -16,6 +16,6 @@ spring:
 #    username: salted
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/salted26
-    url: jdbc:mysql://10.211.55.3:3306/salted
+    url: jdbc:mysql://10.211.55.4:3306/salted
     username: salted26
     password: gksmfdlA!01
