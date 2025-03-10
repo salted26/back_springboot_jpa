@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UsersDTO {
 
-  private Long no;
-  private String email;
+  private Long id;
+  private String username;
   private String password;
   private String nickname;
   private UserRoleType role;
-  private LocalDateTime joinDate;
+  private LocalDateTime join_date;
 
 }

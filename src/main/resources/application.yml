@@ -1,3 +1,8 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
 spring:
   application:
     name: back_jpa
@@ -20,7 +25,7 @@ spring:
     username: salted26
     password: gksmfdlA!01
 
-jwt:
-  header: Authorization
-  # secretKey hs512
-  secret: y+~Z*s6_cfBu/|ybK17JoJ<-"K@cZjEOri@aa&V?)Z\HB#6j:!`}Vg>wtM;_-4~e
+  security:
+    user:
+      name: user
+      password: 1234

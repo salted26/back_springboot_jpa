@@ -7,23 +7,23 @@ public class UsersMapper {
 
   public static UsersDTO mapToUsersDTO(Users users) {
     return new UsersDTO(
-      users.getNo(),
-      users.getEmail(),
+      users.getId(),
+      users.getUsername(),
       users.getPassword(),
       users.getNickname(),
       users.getRole(),
-      users.getJoinDate()
+      users.getJoin_date()
     );
   }
 
   public static Users mapToUsers(UsersDTO usersDTO) {
     return new Users(
-      usersDTO.getNo(),
-      usersDTO.getEmail(),
+      usersDTO.getId(),
+      usersDTO.getUsername(),
       usersDTO.getPassword(),
       usersDTO.getNickname(),
       usersDTO.getRole(),
-      usersDTO.getJoinDate()
+      usersDTO.getJoin_date()
     );
   }
 
