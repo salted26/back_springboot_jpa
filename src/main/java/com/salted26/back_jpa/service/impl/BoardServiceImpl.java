@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -58,9 +59,12 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public BoardDTO getBoardById(Long id) {
+
     Board board = boardRepository.findById(id)
       .orElseThrow(()
         -> new EntityNotFoundException("Board with id " + id + " not found"));
+    int views = board.getViews();
+    boardRepository.setViews(views, id);
     return BoardMapper.mapToBoardDTO(board);
 
   }
